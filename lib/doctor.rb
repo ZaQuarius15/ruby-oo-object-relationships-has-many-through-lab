@@ -6,7 +6,7 @@ class Doctor
     
     def initialize(name)
         @name = name
-        @@all << self
+        self.class.all << self
     end
 
     def appointments
@@ -20,8 +20,8 @@ class Doctor
     end
 
     def patients
-        self.appointments.each_with_object([]) do |appointment, doc_pats|
-            doc_pats << appointment.patient
+        self.appointments.map do |appointment|
+            appointment.patient
         end
     end
 

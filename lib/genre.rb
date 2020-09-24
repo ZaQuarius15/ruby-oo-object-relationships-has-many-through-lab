@@ -1,12 +1,12 @@
 class Genre
 
-    attr_reader :name
-    
     @@all = []
+
+    attr_reader :name
 
     def initialize(name)
         @name = name
-        @@all << self
+        self.class.all << self
     end
 
     def songs 
@@ -20,8 +20,9 @@ class Genre
     end
 
     def artists
-        self.songs.each_with_object([]) do |song, gen_arts|
-            gen_arts << song.artist
+        self.songs.map do |song|
+            song.artist
         end
     end
+
 end

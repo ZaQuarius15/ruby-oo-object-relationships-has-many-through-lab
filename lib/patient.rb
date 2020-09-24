@@ -1,12 +1,12 @@
 class Patient
 
-    attr_reader :name
-
     @@all = []
+
+    attr_reader :name
 
     def initialize(name)
         @name = name
-        @@all << self
+        self.class.all << self
     end
 
     def new_appointment(doctor, date)
@@ -24,8 +24,9 @@ class Patient
     end
 
     def doctors
-        self.appointments.each_with_object([]) do |appointment, pat_docs|
-            pat_docs << appointment.doctor
+        self.appointments.map do |appointment|
+            appointment.doctor
         end
     end
+
 end

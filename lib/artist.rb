@@ -6,7 +6,7 @@ class Artist
 
     def initialize(name)
         @name = name
-        @@all << self
+        self.class.all << self
     end
 
     def self.all
@@ -24,8 +24,9 @@ class Artist
     end
 
     def genres
-        self.songs.each_with_object([]) do |song, art_gens|
-            art_gens << song.genre
+        self.songs.map do |song|
+            song.genre
         end
     end
+
 end
